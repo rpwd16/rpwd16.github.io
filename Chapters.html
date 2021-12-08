@@ -34,7 +34,7 @@
                 <div class="header_toggle">
                     <i class="bx bx-menu hamburger" id="header-toggle"></i>
                 </div>
-                <a class="navbar-brand mx-3" href="home.html"
+                <a class="navbar-brand mx-3" href="index.html"
                     ><img src="./src/spasticLOGO.jpeg" alt="logo" width="80px"
                 /></a>
                 <button
@@ -54,7 +54,7 @@
                             <a
                                 class="nav-link"
                                 aria-current="page"
-                                href="home.html"
+                                href="index.html"
                                 >Home</a
                             >
                         </li>
@@ -236,7 +236,7 @@
                 const chapter = document.querySelector(".chapter-container");
                 const local = localStorage.getItem("Chapters");
                 if (!local) {
-                    chapter.innerHTML = `<iframe src="/src/chap1.pdf" frameborder="0" title="chapter-1"></iframe>`;
+                    chapter.innerHTML = `<iframe src="./src/chap1.pdf" frameborder="0" title="chapter-1"></iframe>`;
                 } else {
                     let localChap = JSON.parse(local);
                     chapter.innerHTML = localChap.chapterValue;
@@ -245,7 +245,7 @@
 
             function loadChapter(n) {
                 const content = `<h2 style="color: #3e2093;">Chapter-${n}</h2>
-                <iframe src="/src/chap${n}.pdf" frameborder="0" title="chapter-${n}"></iframe>`;
+                <iframe src="./src/chap${n}.pdf" frameborder="0" title="chapter-${n}"></iframe>`;
                 localStorage.setItem(
                     "Chapters",
                     JSON.stringify({ chapterValue: content })
