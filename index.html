@@ -14,35 +14,98 @@
     />
     <title>Home</title>
     <style>
+      /* Custom Styles */
       .hero-poster {
         background: url(https://i.ibb.co/Ws2FGSG/photo-1423592707957-3b212afa6733-jfif.jpg);
         background-size: cover;
+        background-position: center center;
         height: 70vh;
         color: white;
         text-align: center;
       }
+
       .hero {
         margin-top: 12vh;
       }
-      .deck {
+
+      /* Footer Styling */
+      .footer-copyright {
+        background-color: #3c2a98;
+      }
+
+      .footer-copyright .container {
+        text-align: center;
         color: white;
-        border-radius: 16px;
+      }
+
+      .footer-copyright a {
+        color: white;
+      }
+
+      /* Custom color theme */
+      .nav-wrapper {
+        background-color: #3c2a98 !important;
+      }
+
+      .btn-outline-info {
+        border-color: #3c2a98;
+        color: #3c2a98;
+      }
+
+      .btn-outline-info:hover {
+        background-color: #3c2a98;
+        color: white;
+      }
+
+      .btn-outline-light {
+        border-color: #fff;
+        color: #fff;
+      }
+
+      .btn-outline-light:hover {
+        background-color: #fff;
+        color: #3c2a98;
+      }
+
+      /* Contact Section */
+      .contact-section i {
+        font-size: 40px;
+        margin-right: 20px;
+        color: #3c2a98;
+      }
+
+      .contact-section ul {
+        padding-left: 20px;
+      }
+
+      .contact-section ul li {
+        font-size: 18px;
+        margin: 15px 0;
+      }
+
+      .contact-section ul li a {
+        color: #3c2a98;
+        text-decoration: none;
+      }
+
+      .contact-section ul li a:hover {
+        text-decoration: underline;
       }
     </style>
   </head>
   <body>
 
     <!-- Navbar -->
-    <nav class="nav-wrapper light-blue">
+    <nav class="nav-wrapper">
       <div class="container">
         <a href="#" class="brand-logo">
           <img src="./src/spasticLOGO.jpeg" alt="logo" width="80px" />
         </a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <li><a href="#" class="text-primary">Home</a></li>
-          <li><a href="AboutUs.html">About</a></li>
-          <li><a href="Chapters.html">Chapters</a></li>
-          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="#" class="text-white">Home</a></li>
+          <li><a href="AboutUs.html" class="text-white">About</a></li>
+          <li><a href="Chapters.html" class="text-white">Chapters</a></li>
+          <li><a href="contact.html" class="text-white">Contact Us</a></li>
         </ul>
       </div>
     </nav>
@@ -61,21 +124,37 @@
             existing Persons With Disabilities Act, 1995.
           </p>
           <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-            <a href="Chapters.html"
-              ><button type="button" class="btn btn-outline-info btn-lg px-4 me-sm-3 fw-bold">
+            <a href="Chapters.html">
+              <button type="button" class="btn btn-outline-info btn-lg px-4 me-sm-3 fw-bold">
                 Chapters
-              </button></a
-            >
-            <a href="AboutUs.html"><button type="button" class="btn btn-outline-light btn-lg px-4">
+              </button>
+            </a>
+            <a href="AboutUs.html">
+              <button type="button" class="btn btn-outline-light btn-lg px-4">
                 Read More
-              </button></a>
+              </button>
+            </a>
           </div>
         </div>
       </div>
     </div>
 
+    <!-- Contact Section -->
+    <div class="container my-5">
+      <div class="contact-section row">
+        <!-- Contact Info -->
+        <div class="col s12">
+          <h5 class="text-center">Contact</h5>
+          <ul>
+            <li><i class="fas fa-home"></i> Ahmedabad, Gujarat</li>
+            <li><i class="fas fa-envelope"></i> gujaratspasticsociety@gmail.com</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
     <!-- Footer -->
-    <footer class="page-footer light-blue darken-4">
+    <footer class="page-footer">
       <div class="container">
         <div class="row">
           <div class="col l6 s12">
@@ -98,7 +177,7 @@
       </div>
       <div class="footer-copyright">
         <div class="container">
-          © 2021 Copyright: <a class="grey-text text-lighten-4" href="https://kodeitsolutions.com/">Kode IT</a>
+          © 2021 Copyright: Gujarat Spastic Society
         </div>
       </div>
     </footer>
