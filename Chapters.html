@@ -6,9 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Chapters</title>
 
-  <!-- Materialize CSS for styling -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet" />
-  <!-- Font Awesome for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
 
   <style>
@@ -38,7 +36,6 @@
       height: auto;
     }
 
-    /* Navbar custom styles */
     .navbar {
       background-color: #3e2093;
     }
@@ -60,21 +57,16 @@
       color: white !important;
     }
 
-    /* Footer styles merged */
     footer {
       background-color: #3e2093;
       color: white;
-      padding: 40px 20px; /* Adjusted padding for better spacing */
+      padding: 40px 20px;
       margin-top: 50px;
     }
 
     footer .footer-content {
       text-align: center;
-      margin-bottom: 30px; /* Space between the top and bottom content */
-    }
-
-    footer .footer-content p {
-      text-align: justify;
+      margin-bottom: 30px;
     }
 
     footer .footer-bottom {
@@ -102,30 +94,15 @@
     footer .social-icons a:hover {
       color: #f1f1f1;
     }
-
-    @media (max-width: 768px) {
-      footer .social-icons {
-        flex-direction: column;
-        align-items: center;
-      }
-
-      footer .social-icons a {
-        margin-bottom: 10px;
-      }
-    }
   </style>
 </head>
-
 <body onload="reloadInitial()">
   <!-- Navbar -->
   <nav class="navbar">
     <div class="container">
-      <!-- Brand/logo -->
       <a class="brand-logo" href="index.html">
         <img src="./src/spasticLOGO.jpeg" alt="logo" width="80px" class="brand-logo" />
       </a>
-
-      <!-- Navbar links -->
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li><a href="index.html">Home</a></li>
         <li><a href="AboutUs.html">About</a></li>
@@ -168,45 +145,25 @@
     <canvas id="pdf-canvas"></canvas>
   </div>
 
-  <!-- Footer -->
+  <!-- Footer Section -->
   <footer>
     <div class="footer-content">
-      <p>
-        Gujarat Spastic Society is a Not-for-Profit Community Based Organization that empowers the well-being and inclusion of people with disability to achieve their fullest potential.
-      </p>
+      <p>Here goes your footer content...</p>
     </div>
-
-    <!-- Social Media Icons -->
-    <section class="social-icons">
-      <a href="https://facebook.com/gujaratspasticsociety" id="facebook-link" target="_blank" title="Follow us on Facebook">
-        <i class="fab fa-facebook-f"></i>
-      </a>
-      <a href="https://twitter.com/gujaratspasticsociety" id="twitter-link" target="_blank" title="Follow us on Twitter">
-        <i class="fab fa-twitter"></i>
-      </a>
-      <a href="https://instagram.com/gujaratspasticsociety" id="instagram-link" target="_blank" title="Follow us on Instagram">
-        <i class="fab fa-instagram"></i>
-      </a>
-      <a href="https://linkedin.com/company/gujaratspasticsociety" id="linkedin-link" target="_blank" title="Follow us on LinkedIn">
-        <i class="fab fa-linkedin-in"></i>
-      </a>
-    </section>
-
-    <!-- Copyright Section -->
     <div class="footer-bottom">
-      <div class="container">
-        <div class="text-center p-4">
-          © 2024 Copyright:
-          <a class="text-reset fw-bold" href="#" target="_blank">Gujarat Spastic Society</a>
-        </div>
+      <div class="brand">Your Company Name</div>
+      <div class="social-icons">
+        <a id="facebook-link" href="#"><i class="fab fa-facebook"></i></a>
+        <a id="twitter-link" href="#"><i class="fab fa-twitter"></i></a>
+        <a id="instagram-link" href="#"><i class="fab fa-instagram"></i></a>
+        <a id="linkedin-link" href="#"><i class="fab fa-linkedin"></i></a>
       </div>
     </div>
   </footer>
 
-  <!-- PDF.js Script -->
+  <!-- PDF.js Library -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
-
-  <!-- Materialize JS & Initialization Script -->
+  <!-- Materialize JS -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
   <script>
@@ -214,18 +171,15 @@
     const context = canvas.getContext('2d');
     let pdfDoc = null;
 
-    // Initialize Materialize select dropdown
-    document.addEventListener('DOMContentLoaded', function() {
-      var elems = document.querySelectorAll('select');
-      var instances = M.FormSelect.init(elems);
-    });
-
     function loadChapter() {
       const chapterNumber = document.getElementById('chapter-select').value;
       if (!chapterNumber) return;
 
       localStorage.setItem('selectedChapter', chapterNumber);
-      const url = `./src/chap${chapterNumber}.pdf`;
+
+      // Fetch the PDF using the raw GitHub URL
+      const url = `https://raw.githubusercontent.com/rpwd16/rpwd16.github.io/src/chap${chapterNumber}.pdf`;
+
       loadPDF(url);
     }
 
@@ -233,7 +187,7 @@
       pdfjsLib.getDocument(url).promise
         .then((doc) => {
           pdfDoc = doc;
-          renderPage(1);
+          renderPage(1);  // Render the first page of the PDF
         })
         .catch((error) => {
           console.error('Error loading PDF: ', error);
@@ -247,19 +201,20 @@
         canvas.width = viewport.width;
         canvas.height = viewport.height;
 
-        page.render({ canvasContext: context, viewport: viewport });
+        page.render({
+          canvasContext: context,
+          viewport: viewport,
+        });
       });
     }
 
     function reloadInitial() {
-      const localChapter = localStorage.getItem('selectedChapter');
-      if (localChapter) {
-        document.getElementById('chapter-select').value = localChapter;
+      const selectedChapter = localStorage.getItem('selectedChapter');
+      if (selectedChapter) {
+        document.getElementById('chapter-select').value = selectedChapter;
         loadChapter();
       }
     }
-
-    reloadInitial();
   </script>
 </body>
 </html>
