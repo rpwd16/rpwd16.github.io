@@ -1,227 +1,270 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Chapters</title>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chapters</title>
 
-    <!-- Materialize CSS for styling -->
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
-      rel="stylesheet"
-    />
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-        background-color: #f8f9fa;
-      }
+  <!-- Materialize CSS for styling -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet" />
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
 
-      .container {
-        margin: 20px;
-      }
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f8f9fa;
+    }
 
-      #pdf-viewer {
-        width: 100%;
-        height: 80vh;
-        border: 1px solid #ddd;
-        background-color: #f4f4f4;
-        text-align: center;
-        display: flex;
-        justify-content: center;
+    .container {
+      margin: 20px;
+    }
+
+    #pdf-viewer {
+      width: 100%;
+      height: 80vh;
+      border: 1px solid #ddd;
+      background-color: #f4f4f4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    canvas {
+      max-width: 100%;
+      height: auto;
+    }
+
+    /* Navbar custom styles */
+    .navbar {
+      background-color: #3e2093;
+    }
+
+    .navbar .brand-logo {
+      max-height: 70px;
+    }
+
+    .navbar-nav {
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .nav-item {
+      margin-right: 20px;
+    }
+
+    .nav-link {
+      color: white !important;
+    }
+
+    /* Footer styles merged */
+    footer {
+      background-color: #3e2093;
+      color: white;
+      padding: 40px 20px; /* Adjusted padding for better spacing */
+      margin-top: 50px;
+    }
+
+    footer .footer-content {
+      text-align: center;
+      margin-bottom: 30px; /* Space between the top and bottom content */
+    }
+
+    footer .footer-content p {
+      text-align: justify;
+    }
+
+    footer .footer-bottom {
+      background-color: #3e2093;
+      padding: 20px 0;
+    }
+
+    footer .footer-bottom .brand {
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    footer .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    footer .social-icons a {
+      font-size: 30px;
+      color: white;
+      text-decoration: none;
+    }
+
+    footer .social-icons a:hover {
+      color: #f1f1f1;
+    }
+
+    @media (max-width: 768px) {
+      footer .social-icons {
+        flex-direction: column;
         align-items: center;
       }
 
-      canvas {
-        max-width: 100%;
-        height: auto;
+      footer .social-icons a {
+        margin-bottom: 10px;
       }
+    }
+  </style>
+</head>
 
-      /* Navbar custom styles */
-      .navbar {
-        background-color: #3e2093; /* Purple color */
-      }
+<body onload="reloadInitial()">
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="container">
+      <!-- Brand/logo -->
+      <a class="brand-logo" href="index.html">
+        <img src="./src/spasticLOGO.jpeg" alt="logo" width="80px" class="brand-logo" />
+      </a>
 
-      .navbar .brand-logo {
-        max-height: 70px;
-      }
-      .nav-wrapper {
-        padding-left: 0;
-      }
+      <!-- Navbar links -->
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="AboutUs.html">About</a></li>
+        <li><a href="#">Chapters</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+      </ul>
+    </div>
+  </nav>
 
-      /* Footer styles */
-      footer {
-        background-color: #f1f1f1;
-        padding: 10px 0;
-      }
-      footer .text-center {
-        text-align: center;
-      }
-    </style>
-  </head>
+  <!-- Chapter Selection Dropdown -->
+  <div class="container">
+    <h1 class="center-align">Select Chapter</h1>
+    <div class="input-field col s12">
+      <select id="chapter-select" onchange="loadChapter()">
+        <option value="" disabled selected>Choose a Chapter</option>
+        <option value="1">Chapter 1</option>
+        <option value="2">Chapter 2</option>
+        <option value="3">Chapter 3</option>
+        <option value="4">Chapter 4</option>
+        <option value="5">Chapter 5</option>
+        <option value="6">Chapter 6</option>
+        <option value="7">Chapter 7</option>
+        <option value="8">Chapter 8</option>
+        <option value="9">Chapter 9</option>
+        <option value="10">Chapter 10</option>
+        <option value="11">Chapter 11</option>
+        <option value="12">Chapter 12</option>
+        <option value="13">Chapter 13</option>
+        <option value="14">Chapter 14</option>
+        <option value="15">Chapter 15</option>
+        <option value="16">Chapter 16</option>
+        <option value="17">Chapter 17</option>
+      </select>
+      <label>Select Chapter</label>
+    </div>
+  </div>
 
-  <body onload="reloadInitial()">
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light">
-      <div class="container-fluid">
-        <!-- Brand/logo -->
-        <a class="navbar-brand mx-3" href="index.html">
-          <img
-            src="./src/spasticLOGO.jpeg"
-            alt="logo"
-            width="80px"
-            class="brand-logo"
-          />
-        </a>
+  <!-- PDF Viewer Section -->
+  <div id="pdf-viewer">
+    <canvas id="pdf-canvas"></canvas>
+  </div>
 
-        <!-- Navbar toggler for mobile -->
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <p>
+        Gujarat Spastic Society is a Not-for-Profit Community Based Organization that empowers the well-being and inclusion of people with disability to achieve their fullest potential.
+      </p>
+    </div>
 
-        <!-- Navbar links -->
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item mx-4">
-              <a class="nav-link" href="index.html">Home</a>
-            </li>
-            <li class="nav-item mx-4">
-              <a class="nav-link" href="AboutUs.html">About</a>
-            </li>
-            <li class="nav-item mx-4">
-              <a class="nav-link text-primary active" href="#">Chapters</a>
-            </li>
-            <li class="nav-item mx-4">
-              <a class="nav-link" href="contact.html">Contact Us</a>
-            </li>
-          </ul>
+    <!-- Social Media Icons -->
+    <section class="social-icons">
+      <a href="https://facebook.com/gujaratspasticsociety" id="facebook-link" target="_blank" title="Follow us on Facebook">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+      <a href="https://twitter.com/gujaratspasticsociety" id="twitter-link" target="_blank" title="Follow us on Twitter">
+        <i class="fab fa-twitter"></i>
+      </a>
+      <a href="https://instagram.com/gujaratspasticsociety" id="instagram-link" target="_blank" title="Follow us on Instagram">
+        <i class="fab fa-instagram"></i>
+      </a>
+      <a href="https://linkedin.com/company/gujaratspasticsociety" id="linkedin-link" target="_blank" title="Follow us on LinkedIn">
+        <i class="fab fa-linkedin-in"></i>
+      </a>
+    </section>
+
+    <!-- Copyright Section -->
+    <div class="footer-bottom">
+      <div class="container">
+        <div class="text-center p-4">
+          © 2024 Copyright:
+          <a class="text-reset fw-bold" href="#" target="_blank">Gujarat Spastic Society</a>
         </div>
       </div>
-    </nav>
-
-    <!-- Chapter Selection Dropdown -->
-    <div class="container">
-      <h1 class="center-align">Select Chapter</h1>
-      <div class="input-field col s12">
-        <select id="chapter-select" onchange="loadChapter()">
-          <option value="" disabled selected>Choose a Chapter</option>
-          <option value="1">Chapter 1</option>
-          <option value="2">Chapter 2</option>
-          <option value="3">Chapter 3</option>
-          <option value="4">Chapter 4</option>
-          <option value="5">Chapter 5</option>
-          <option value="6">Chapter 6</option>
-          <option value="7">Chapter 7</option>
-          <option value="8">Chapter 8</option>
-          <option value="9">Chapter 9</option>
-          <option value="10">Chapter 10</option>
-          <option value="11">Chapter 11</option>
-          <option value="12">Chapter 12</option>
-          <option value="13">Chapter 13</option>
-          <option value="14">Chapter 14</option>
-          <option value="15">Chapter 15</option>
-          <option value="16">Chapter 16</option>
-          <option value="17">Chapter 17</option>
-        </select>
-        <label>Select Chapter</label>
-      </div>
     </div>
+  </footer>
 
-    <!-- PDF Viewer Section -->
-    <div id="pdf-viewer">
-      <canvas id="pdf-canvas"></canvas>
-    </div>
+  <!-- PDF.js Script -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
 
-    <!-- Footer -->
-    <footer class="text-center text-lg-start bg-light text-muted">
-      <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05)">
-        © 2021 Copyright:
-        <a class="text-reset fw-bold" href="https://kodeitsolutions.com/" target="_blank">
-          Kode IT
-        </a>
-      </div>
-    </footer>
+  <script>
+    const canvas = document.getElementById('pdf-canvas');
+    const context = canvas.getContext('2d');
+    let pdfDoc = null;
 
-    <!-- PDF.js Script -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
+    function loadChapter() {
+      const chapterNumber = document.getElementById('chapter-select').value;
+      if (!chapterNumber) return;
 
-    <script>
-      // Initialize PDF.js viewer
-      const canvas = document.getElementById('pdf-canvas');
-      const context = canvas.getContext('2d');
-      let pdfDoc = null;
+      localStorage.setItem('selectedChapter', chapterNumber);
+      const url = `./src/chap${chapterNumber}.pdf`;
+      loadPDF(url);
+    }
 
-      // Load selected chapter PDF using PDF.js
-      function loadChapter() {
-        const chapterNumber = document.getElementById('chapter-select').value;
-        if (!chapterNumber) return;
-
-        // Set the PDF URL based on the selected chapter
-        const url = `./src/chap${chapterNumber}.pdf`;
-        loadPDF(url);
-      }
-
-      // Fetch and render PDF
-      function loadPDF(url) {
-        pdfjsLib.getDocument(url).promise
-          .then((doc) => {
-            pdfDoc = doc;
-            renderPage(1); // Default to render first page
-          })
-          .catch((error) => {
-            console.error('Error loading PDF: ', error);
-          });
-      }
-
-      // Render specific page of the PDF
-      function renderPage(pageNum) {
-        pdfDoc.getPage(pageNum).then((page) => {
-          const viewport = page.getViewport({ scale: 1 });
-          canvas.height = viewport.height;
-          canvas.width = viewport.width;
-
-          const renderContext = {
-            canvasContext: context,
-            viewport: viewport
-          };
-
-          page.render(renderContext).promise.then(() => {
-            console.log(`Page ${pageNum} rendered`);
-          });
+    function loadPDF(url) {
+      pdfjsLib.getDocument(url).promise
+        .then((doc) => {
+          pdfDoc = doc;
+          renderPage(1);
+        })
+        .catch((error) => {
+          console.error('Error loading PDF: ', error);
+          alert("Failed to load the chapter. Please try again.");
         });
-      }
+    }
 
-      // Reload initial chapter if stored
-      function reloadInitial() {
-        const chapter = document.querySelector('.chapter-container');
-        const local = localStorage.getItem('Chapters');
-        if (!local) {
-          chapter.innerHTML = `<iframe src="./src/chap1.pdf" frameborder="0" title="chapter-1"></iframe>`;
-        } else {
-          let localChap = JSON.parse(local);
-          chapter.innerHTML = localChap.chapterValue;
-        }
-      }
-    </script>
+    function renderPage(pageNumber) {
+      pdfDoc.getPage(pageNumber).then((page) => {
+        const viewport = page.getViewport({ scale: 1 });
+        canvas.width = viewport.width;
+        canvas.height = viewport.height;
 
-    <!-- Materialize JS for dropdown functionality -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script>
-      // Initialize the Materialize dropdown
-      document.addEventListener('DOMContentLoaded', function () {
-        var elems = document.querySelectorAll('select');
-        var instances = M.FormSelect.init(elems);
+        page.render({ canvasContext: context, viewport: viewport });
       });
-    </script>
-  </body>
+    }
+
+    function reloadInitial() {
+      const localChapter = localStorage.getItem('selectedChapter');
+      if (localChapter) {
+        document.getElementById('chapter-select').value = localChapter;
+        loadChapter();
+      }
+    }
+
+    function setSocialLinks() {
+      const socialLinks = {
+        facebook: 'https://facebook.com/gujaratspasticsociety',
+        twitter: 'https://twitter.com/gujaratspasticsociety',
+        instagram: 'https://instagram.com/gujaratspasticsociety',
+        linkedin: 'https://linkedin.com/company/gujaratspasticsociety',
+      };
+
+      document.getElementById('facebook-link').href = socialLinks.facebook;
+      document.getElementById('twitter-link').href = socialLinks.twitter;
+      document.getElementById('instagram-link').href = socialLinks.instagram;
+      document.getElementById('linkedin-link').href = socialLinks.linkedin;
+    }
+
+    setSocialLinks();
+  </script>
+</body>
 </html>
