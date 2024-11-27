@@ -18,9 +18,11 @@
         padding: 0;
         background-color: #f8f9fa;
       }
+
       .container {
         margin: 20px;
       }
+
       #pdf-viewer {
         width: 100%;
         height: 80vh;
@@ -31,24 +33,63 @@
         justify-content: center;
         align-items: center;
       }
+
       canvas {
         max-width: 100%;
         height: auto;
       }
+
+      /* Navbar custom styles */
+      .navbar {
+        background-color: #3e2093; /* Purple color */
+      }
+
+      .navbar .brand-logo {
+        max-height: 70px;
+      }
+      .nav-wrapper {
+        padding-left: 0;
+      }
+
+      /* Footer styles */
+      footer {
+        background-color: #f1f1f1;
+        padding: 10px 0;
+      }
+      footer .text-center {
+        text-align: center;
+      }
     </style>
   </head>
 
-  <body id="body-pd" onload="reloadInitial()">
-    <!-- Navbar for chapters -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+  <body onload="reloadInitial()">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light">
       <div class="container-fluid">
+        <!-- Brand/logo -->
         <a class="navbar-brand mx-3" href="index.html">
           <img
             src="./src/spasticLOGO.jpeg"
             alt="logo"
             width="80px"
+            class="brand-logo"
           />
         </a>
+
+        <!-- Navbar toggler for mobile -->
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Navbar links -->
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ms-auto">
             <li class="nav-item mx-4">
