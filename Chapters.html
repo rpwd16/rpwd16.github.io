@@ -206,10 +206,19 @@
   <!-- PDF.js Script -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
 
+  <!-- Materialize JS & Initialization Script -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
   <script>
     const canvas = document.getElementById('pdf-canvas');
     const context = canvas.getContext('2d');
     let pdfDoc = null;
+
+    // Initialize Materialize select dropdown
+    document.addEventListener('DOMContentLoaded', function() {
+      var elems = document.querySelectorAll('select');
+      var instances = M.FormSelect.init(elems);
+    });
 
     function loadChapter() {
       const chapterNumber = document.getElementById('chapter-select').value;
@@ -268,3 +277,4 @@
   </script>
 </body>
 </html>
+
