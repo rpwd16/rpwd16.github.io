@@ -14,9 +14,43 @@
       padding: 0;
       background-color: #f8f9fa;
     }
-    .container {
-      margin: 20px;
+
+    /* Smooth Purple Navbar */
+    nav {
+      background: #3e2093;
     }
+    nav .brand-logo {
+      font-size: 20px;
+    }
+    nav ul li a {
+      color: white;
+    }
+    nav ul li a:hover {
+      color: #c4a2d6;
+    }
+
+    /* Chapter Dropdown */
+    .input-field select {
+      margin-top: 30px;
+    }
+
+    /* Footer Styling */
+    footer {
+      background-color: #3e2093;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    footer .social-icons a {
+      margin: 0 10px;
+      color: white;
+      font-size: 20px;
+    }
+    footer .social-icons a:hover {
+      color: #c4a2d6;
+    }
+
+    /* PDF Viewer Section */
     #pdf-viewer {
       width: 100%;
       height: 80vh;
@@ -40,14 +74,14 @@
       width: 100%;
       height: 100%;
       border: none;
-      display: none; /* Initially hidden */
+      display: none;
     }
     iframe {
-      display: none; /* Hide iframe */
+      display: none;
     }
   </style>
 </head>
-<body onload="reloadInitial()">
+<body>
   <!-- Navbar -->
   <nav class="navbar">
     <div class="container">
@@ -63,7 +97,7 @@
 
   <!-- Chapter Selection Dropdown -->
   <div class="container">
-    <h1 class="center-align">Select Chapter</h1>
+    <h1 class="center-align" id="message">Select a Chapter</h1>
     <div class="input-field col s12">
       <select id="chapter-select" onchange="loadChapter()">
         <option value="" disabled selected>Choose a Chapter</option>
@@ -96,10 +130,9 @@
     <iframe id="pdf-iframe" src="" style="display:none;"></iframe>
   </div>
 
+  <!-- Footer -->
   <footer>
-    <div class="footer-content">
-      <p>Gujarat Spastic Society is a Not-for-Profit Community Based Organization...</p>
-    </div>
+    <p>Gujarat Spastic Society is a Not-for-Profit Community Based Organization...</p>
     <section class="social-icons">
       <a href="https://facebook.com/gujaratspasticsociety" target="_blank"><i class="fab fa-facebook-f"></i></a>
       <a href="https://twitter.com/gujaratspasticsociety" target="_blank"><i class="fab fa-twitter"></i></a>
@@ -108,6 +141,7 @@
     </section>
   </footer>
 
+  <!-- PDF.js Library -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
 
   <script>
@@ -116,7 +150,9 @@
     const loadingIndicator = document.getElementById('loading');
     const embed = document.getElementById('pdf-embed');
     const iframe = document.getElementById('pdf-iframe');
+    const message = document.getElementById('message');
 
+    // Load the selected chapter PDF
     function loadChapter() {
       const chapterNumber = document.getElementById('chapter-select').value;
       if (!chapterNumber) return;
@@ -128,6 +164,8 @@
       iframe.style.display = 'none';
       loadingIndicator.style.display = 'block'; // Show loading indicator
 
+      // Clear the previous message and try to load the PDF
+      message.textContent = 'Loading...';
       loadPDF(url); // Attempt to load using PDF.js
     }
 
@@ -138,7 +176,7 @@
         renderPage(currentPage);
       }).catch((error) => {
         console.error('Error loading PDF:', error);
-        loadingIndicator.textContent = 'Failed to load PDF. Trying fallback...';
+        message.textContent = 'Failed to load PDF. Trying fallback...';
         loadPDFWithEmbed(url); // If PDF.js fails, fall back to embed
       });
     }
@@ -154,7 +192,8 @@
 
         page.render({ canvasContext: context, viewport: viewport }).promise.then(() => {
           document.getElementById('pdf-viewer').appendChild(canvas);
-          loadingIndicator.style.display = 'none';
+          loadingIndicator.style.display = 'none'; // Hide loading
+          message.textContent = ''; // Clear message
         });
       });
     }
@@ -163,23 +202,27 @@
     function loadPDFWithEmbed(url) {
       embed.src = url;
       embed.style.display = 'block'; // Show the embed element
-      loadingIndicator.style.display = 'none'; // Hide the loading indicator
+      loadingIndicator.style.display = 'none'; // Hide loading indicator
+      message.textContent = ''; // Clear message
     }
 
     // Fallback method to load PDF using <iframe> tag if embed fails
     function loadPDFWithIframe(url) {
       iframe.src = url;
       iframe.style.display = 'block'; // Show the iframe
-      loadingIndicator.style.display = 'none'; // Hide the loading indicator
+      loadingIndicator.style.display = 'none'; // Hide loading indicator
+      message.textContent = ''; // Clear message
     }
 
-    function reloadInitial() {
-      const savedChapter = localStorage.getItem('selectedChapter');
-      if (savedChapter) {
-        document.getElementById('chapter-select').value = savedChapter;
-        loadChapter();
-      }
-    }
+    // Don't load any PDF on page load
+    window.onload = function() {
+      message.textContent = "Select a Chapter to view PDF";
+      // Initialize dropdown functionality
+      M.AutoInit(); // Ensures that Materialize.js components are initialized
+    };
   </script>
+
+  <!-- Materialize.js for Dropdown functionality -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </body>
 </html>
