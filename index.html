@@ -226,7 +226,7 @@
   </main>
 
   <footer>
-    <p>© 2024 Gujarat Spastic Society</p>
+    <p>© 2025 Gujarat Spastic Society</p>
   </footer>
 
   <script>
@@ -241,20 +241,41 @@
     }
 
     const chapterSelect = document.getElementById('chapterDropdown');
-    const pdfEmbed = document.getElementById('pdf-embed');
-    const loadingIndicator = document.getElementById('loading');
+const pdfEmbed = document.getElementById('pdf-embed');
+const loadingIndicator = document.getElementById('loading');
 
-    chapterSelect.addEventListener('change', (event) => {
-      const url = event.target.value;
-      if (!url) return;
-      pdfEmbed.style.display = 'none';
-      loadingIndicator.style.display = 'block';
-      pdfEmbed.src = url;
-      pdfEmbed.onload = () => {
-        loadingIndicator.style.display = 'none';
-        pdfEmbed.style.display = 'block';
-      };
-    });
+// Create fallback link element
+let fallbackLink = document.getElementById('fallback-link');
+if (!fallbackLink) {
+  fallbackLink = document.createElement('p');
+  fallbackLink.id = 'fallback-link';
+  fallbackLink.style.textAlign = 'center';
+  fallbackLink.style.marginTop = '10px';
+  fallbackLink.style.display = 'none';
+  fallbackLink.innerHTML = 'If PDF does not load, <a id="pdf-link" href="" target="_blank" rel="noopener">open in new tab</a>.';
+  pdfEmbed.parentNode.insertBefore(fallbackLink, pdfEmbed.nextSibling);
+}
+
+const pdfLink = document.getElementById('pdf-link');
+
+chapterSelect.addEventListener('change', (event) => {
+  const url = event.target.value;
+  if (!url) return;
+  pdfEmbed.style.display = 'none';
+  loadingIndicator.style.display = 'block';
+  fallbackLink.style.display = 'none';
+
+  pdfEmbed.src = url;
+  pdfLink.href = url;
+
+  // Timeout fallback for loading indicator hide (since embed.onload is unreliable)
+  setTimeout(() => {
+    loadingIndicator.style.display = 'none';
+    pdfEmbed.style.display = 'block';
+    fallbackLink.style.display = 'block';
+  }, 1500);
+});
+
   </script>
 </body>
 </html>
