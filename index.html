@@ -1,167 +1,260 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Home</title>
-
-    <!-- Materialize CSS -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet" />
-    
-    <!-- FontAwesome CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
-    <style>
-        /* Body Styling */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f8f9fa;
-        }
-
-        /* Navbar Styling */
-        nav {
-            background-color: #3c2a98 !important;
-        }
-
-        nav a {
-            color: white !important;
-        }
-
-        .brand-logo img {
-            max-width: 80px;
-            height: auto;
-        }
-
-        /* Hero Section */
-        .hero-poster {
-            background: url('https://i.ibb.co/Ws2FGSG/photo-1423592707957-3b212afa6733-jfif.jpg') no-repeat center center;
-            background-size: cover;
-            height: 70vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-        }
-
-        .hero-content {
-            color: white;
-        }
-
-        /* Button Styling */
-        .hero-content button {
-            margin: 10px;
-        }
-
-        /* Footer Styling */
-        footer.page-footer {
-            background-color: #3c2a98;
-            padding-top: 10px;
-            padding-bottom: 10px;
-            color: white;
-        }
-
-        footer .container .row {
-            margin-bottom: 0;
-        }
-
-        footer h6 {
-            margin-bottom: 5px;
-        }
-
-        footer p {
-            margin: 0;
-            font-size: 14px;
-        }
-
-        /* Footer Copyright Section */
-        .footer-copyright {
-            background-color: #2c1f77;
-            color: white;
-            text-align: center;
-            padding: 5px 0;
-        }
-
-        .footer-copyright p {
-            margin: 0;
-        }
-
-        /* Align Contact Details to the Right */
-        .contact-details {
-            text-align: right;
-        }
-
-        /* For Small Screens */
-        @media (max-width: 600px) {
-            .hero-poster {
-                height: 50vh;
-            }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Gujarat Spastic Society - RPWD Act</title>
+  <link rel="stylesheet" href="https://unpkg.com/material-components-web@14.0.0/dist/material-components-web.min.css" />
+  <script src="https://unpkg.com/material-components-web@14.0.0/dist/material-components-web.min.js" defer></script>
+  <style>
+    body {
+      font-family: "Roboto", Arial, sans-serif;
+      margin: 0;
+      background-color: #f5f5f5;
+      color: #212121;
+      scroll-behavior: smooth;
+    }
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background-color: #3f51b5;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 1rem;
+      height: 64px;
+    }
+    header .logo {
+      cursor: pointer;
+      font-weight: 500;
+      font-size: 1.25rem;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 1.5rem;
+      font-weight: 500;
+      line-height: 64px;
+      cursor: pointer;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    main {
+      max-width: 960px;
+      margin: 2rem auto 3rem;
+      padding: 0 16px;
+    }
+    section {
+      margin-bottom: 4rem;
+    }
+    /* Hero Section */
+    #home .hero-poster {
+      background: url('https://i.ibb.co/Ws2FGSG/photo-1423592707957-3b212afa6733-jfif.jpg') no-repeat center center;
+      background-size: cover;
+      border-radius: 8px;
+      color: white;
+      padding: 3rem 2rem;
+      text-align: center;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+    }
+    #home .hero-poster h1 {
+      font-weight: 500;
+      margin-bottom: 1rem;
+      font-size: 2rem;
+    }
+    #home .hero-poster p {
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto 2rem;
+      line-height: 1.5;
+    }
+    #home .hero-poster .mdc-button {
+      margin: 0 10px;
+    }
+    /* About Section */
+    #about h2 {
+      color: #3f51b5;
+      border-bottom: 2px solid #3f51b5;
+      padding-bottom: 8px;
+      margin-bottom: 16px;
+      font-weight: 500;
+    }
+    #about p {
+      font-size: 1.05rem;
+      line-height: 1.6;
+      margin-bottom: 1.75rem;
+    }
+    /* Chapters Section */
+    #chapters h1 {
+      color: #3f51b5;
+      font-weight: 500;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+    #chapters .mdc-select {
+      width: 100%;
+      max-width: 400px;
+      margin: 0 auto 2rem;
+      display: block;
+    }
+    #pdf-viewer {
+      width: 100%;
+      height: 80vh;
+      border: 1px solid #ddd;
+      background-color: #f4f4f4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      border-radius: 8px;
+    }
+    #loading {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      display: none;
+      font-size: 24px;
+      color: #3f51b5;
+    }
+    embed {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: none;
+      border-radius: 8px;
+    }
+    footer {
+      background-color: #303f9f;
+      color: white;
+      text-align: center;
+      padding: 1rem 16px;
+      font-size: 0.9rem;
+      margin-top: 3rem;
+    }
+    @media(max-width:600px){
+      header nav a {
+        margin-left: 1rem;
+        font-size: 0.9rem;
+      }
+      #home .hero-poster h1 {
+        font-size: 1.5rem;
+      }
+      #home .hero-poster p {
+        font-size: 1rem;
+      }
+    }
+  </style>
 </head>
-
 <body>
-
-    <!-- Navbar Section -->
+  <header>
+    <div class="logo" onclick="scrollToSection('home')">Gujarat Spastic Society</div>
     <nav>
-        <div class="nav-wrapper container">
-            <a href="#" class="brand-logo"><img src="./src/spasticLOGO.jpeg" alt="logo" /></a>
-            <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="#">Home</a></li>
-                <li><a href="AboutUs.html">About</a></li>
-                <li><a href="Chapters.html">Chapters</a></li>
-            </ul>
-        </div>
+      <a href="#home" onclick="scrollToSection('home')">Home</a>
+      <a href="#about" onclick="scrollToSection('about')">About</a>
+      <a href="#chapters" onclick="scrollToSection('chapters')">Chapters</a>
     </nav>
+  </header>
 
-    <!-- Hero Section -->
-    <div class="hero-poster">
-        <div class="hero-content">
-            <h1 class="display-5 fw-bold">Rights of Persons with Disabilities-2016</h1>
-            <div class="col s12 l6 offset-l3">
-                <p class="fs-5 mb-4">
-                    The Rights of Persons with Disabilities Act, 2016 is the disability legislation passed by the Indian Parliament
-                    to fulfill its obligation to the United Nations Convention on the Rights of Persons with Disabilities,
-                    which India ratified in 2007. The Act replaced the existing Persons With Disabilities Act, 1995.
-                </p>
-                <div class="center-align">
-                    <a href="Chapters.html"><button type="button" class="btn-large waves-effect waves-light purple darken-3 white-text">Chapters</button></a>
-                    <a href="AboutUs.html"><button type="button" class="btn-large waves-effect waves-light purple darken-3 white-text">Read More</button></a>
-                </div>
-            </div>
-        </div>
-    </div>
+  <main>
+    <section id="home">
+      <div class="hero-poster" role="banner">
+        <h1>Rights of Persons with Disabilities-2016</h1>
+        <p>
+          The Rights of Persons with Disabilities Act, 2016 is the disability legislation passed by the Indian Parliament
+          to fulfill its obligation to the United Nations Convention on the Rights of Persons with Disabilities,
+          which India ratified in 2007. The Act replaced the existing Persons With Disabilities Act, 1995.
+        </p>
+        <button class="mdc-button mdc-button--raised mdc-button--primary" onclick="scrollToSection('chapters')">Chapters</button>
+        <button class="mdc-button mdc-button--raised mdc-button--primary" onclick="scrollToSection('about')">Read More</button>
+      </div>
+    </section>
 
-    <!-- Footer Section -->
-    <footer class="page-footer">
-        <div class="container">
-            <div class="row">
-                <!-- About Section -->
-                <div class="col s12 m6 l4">
-                    <h6 class="white-text">Gujarat Spastic Society</h6>
-                    <p class="white-text">
-                        Gujarat Spastic Society is a Not-for-Profit Community Based Organization that empowers the well-being and inclusion of people with disability to achieve their fullest potential.
-                    </p>
-                </div>
+    <section id="about" tabindex="-1">
+      <h2>About The RPWD 2016</h2>
+      <p>
+        The Rights of Persons with Disabilities Act, 2016 is the disability legislation passed by the Indian Parliament
+        to fulfill its obligation to the United Nations Convention on the Rights of Persons with Disabilities,
+        which India ratified in 2007. The Act replaced the existing Persons With Disabilities Act, 1995.
+        <br />
+        <strong>Gujarati Edition is Compiled by Mr. Himanshu Sompura E-Edition (PDF) & Digitized by Mr. Pranjal Vyas.</strong>
+      </p>
+      <h2>About The Company</h2>
+      <p>
+        Gujarat Spastic Society is a Not-for-Profit Community-Based Organization that empowers the well-being and inclusion of people with disabilities
+        to achieve their fullest potential. At the core of everything that GSS undertakes, is the passionate belief in the dignity of human life.
+        It is for these underpinning values, GSS champions for the Rights of divyangs.
+      </p>
+    </section>
 
-               
-            </div>
-        </div>
+    <section id="chapters" tabindex="-1">
+      <h1>Select a Chapter</h1>
 
-        <!-- Footer Copyright - Centered -->
-        <div class="footer-copyright">
-            <p>© 2024 Copyright: Gujarat Spastic Society</p>
-        </div>
-    </footer>
+      <div class="mdc-select" id="chapter-select">
+        <select class="mdc-select__native-control" id="chapterDropdown" aria-label="Select Chapter">
+          <option value="" disabled selected>Choose a Chapter</option>
+          <option value="src/chap1.pdf">Chapter 1</option>
+          <option value="src/chap2.pdf">Chapter 2</option>
+          <option value="src/chap3.pdf">Chapter 3</option>
+          <option value="src/chap4.pdf">Chapter 4</option>
+          <option value="src/chap5.pdf">Chapter 5</option>
+          <option value="src/chap6.pdf">Chapter 6</option>
+          <option value="src/chap7.pdf">Chapter 7</option>
+          <option value="src/chap8.pdf">Chapter 8</option>
+          <option value="src/chap9.pdf">Chapter 9</option>
+          <option value="src/chap10.pdf">Chapter 10</option>
+          <option value="src/chap11.pdf">Chapter 11</option>
+          <option value="src/chap12.pdf">Chapter 12</option>
+          <option value="src/chap13.pdf">Chapter 13</option>
+          <option value="src/chap14.pdf">Chapter 14</option>
+          <option value="src/chap15.pdf">Chapter 15</option>
+          <option value="src/chap16.pdf">Chapter 16</option>
+          <option value="src/chap17.pdf">Chapter 17</option>
+        </select>
+        <label class="mdc-floating-label" for="chapterDropdown">Select Chapter</label>
+        <div class="mdc-line-ripple"></div>
+      </div>
 
-    <!-- Materialize JS and Dependencies -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+      <div id="pdf-viewer" role="region" aria-live="polite" aria-label="PDF viewer">
+        <embed id="pdf-embed" src="" type="application/pdf" aria-hidden="true"></embed>
+        <div id="loading">Loading...</div>
+      </div>
+    </section>
+  </main>
 
+  <footer>
+    <p>© 2024 Gujarat Spastic Society</p>
+  </footer>
+
+  <script>
+    window.mdc.autoInit();
+
+    function scrollToSection(id) {
+      const section = document.getElementById(id);
+      if (section) {
+        section.focus();
+        section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+
+    const chapterSelect = document.getElementById('chapterDropdown');
+    const pdfEmbed = document.getElementById('pdf-embed');
+    const loadingIndicator = document.getElementById('loading');
+
+    chapterSelect.addEventListener('change', (event) => {
+      const url = event.target.value;
+      if (!url) return;
+      pdfEmbed.style.display = 'none';
+      loadingIndicator.style.display = 'block';
+      pdfEmbed.src = url;
+      pdfEmbed.onload = () => {
+        loadingIndicator.style.display = 'none';
+        pdfEmbed.style.display = 'block';
+      };
+    });
+  </script>
 </body>
-
 </html>
-
